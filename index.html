@@ -18,8 +18,14 @@
     }
 </style>
 <body>
+<div id="demo">
 <h1>Disney : films, jeux, ...</h1>
 
+    <li v-for="data in datas">
+       <span> {{data.name}}</span>
+    </li>
+
+</div>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@3"></script>
@@ -32,11 +38,7 @@
     Vue.createApp({
         data() {
             return {
-                ChoiceFilmOrGame:["tvShows","videoGames"],
-                currentFilmOrGame:"tvShows",
-                FilmOrGame:null,
-
-
+                datas:null,
             };
         },
         created: function () {
@@ -44,12 +46,12 @@
         },
         methods: {
             fetchDataPromise: function () {
-                constself = this;
+                self = this;
                 axios
-                    .get(apiURL + self.currentFilmOrGame, config)
+                    .get(constapiURL , constconfig)
                     .then(function (response) {
                         console.log(response.data);
-                        self.commits = response.data;
+                        self.datas = response.data;
 //console.log(self.commits[0].html_url);
                     })
                     .catch(function (error) {
