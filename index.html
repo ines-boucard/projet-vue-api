@@ -8,23 +8,29 @@
     #demo {
         font-family: "Helvetica", Arial, sans-serif;
     }
-    a {
-        text-decoration: none;
-        color: #f66;
+    .containerPersonnage {
+        flex-flow: row wrap;
+        list-style: none;
     }
-    li {
+    .personnage{
+        padding: 20px;
         line-height: 1.5em;
         margin-bottom: 20px;
+        border: solid 3px #555555 ;
+        background-color: darkgray ;
     }
 </style>
 <body>
 <div id="demo">
 <h1>Disney : films, jeux, ...</h1>
-
-    <li v-for="data in datas">
-       <span> {{data.name}}</span>
-    </li>
-
+<!--<pre>{{datas}}</pre>-->
+    <div class="containerPersonnage">
+    <div class="personnage" v-for="personnage in datas.data">
+     <!--  <span> {{data.data.films}}</span>-->
+       <p>{{personnage.name}}</p>
+        <img v-bind:src="personnage.imageUrl">
+    </div>
+    </div>
 </div>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -32,9 +38,7 @@
 <script>
     constapiURL=
         "https://api.disneyapi.dev/characters";
-    constconfig={
 
-    };
     Vue.createApp({
         data() {
             return {
@@ -48,7 +52,7 @@
             fetchDataPromise: function () {
                 self = this;
                 axios
-                    .get(constapiURL , constconfig)
+                    .get(constapiURL)
                     .then(function (response) {
                         console.log(response.data);
                         self.datas = response.data;
