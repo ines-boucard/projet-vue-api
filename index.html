@@ -8,11 +8,14 @@
     #demo {
         font-family: "Helvetica", Arial, sans-serif;
     }
-    .containerPersonnage {
+    .containerPerso {
+        display: flex;
         flex-flow: row wrap;
+        justify-content: space-around;
         list-style: none;
     }
     .personnage{
+        width: 300px;
         padding: 20px;
         line-height: 1.5em;
         margin-bottom: 20px;
@@ -24,8 +27,8 @@
 <div id="demo">
 <h1>Disney : films, jeux, ...</h1>
 <!--<pre>{{datas}}</pre>-->
-    <div class="containerPersonnage">
-    <div class="personnage" v-for="personnage in datas.data">
+    <div class="containerPerso">
+    <div class="personnage"  v-for="personnage in datas.data">
      <!--  <span> {{data.data.films}}</span>-->
        <p>{{personnage.name}}</p>
         <img v-bind:src="personnage.imageUrl">
